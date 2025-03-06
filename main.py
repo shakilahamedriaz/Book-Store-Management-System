@@ -23,7 +23,7 @@ def main():
             price = input("Enter price: ")
             quantity = input("Enter quantity: ")
             #add this information to book_manager/add_books()
-            manager.add_books(title, author, isbn, genre, price, quantity)
+            manager.add_book(title, author, isbn, genre, price, quantity)
         
         elif choice == "2":
             manager.view_books()
