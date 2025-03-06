@@ -7,23 +7,23 @@ class BookManager:
         self.books = load_books()
 
     def add_book(self, title, author, isbn, genre, price, quantity):
-        if not isinstance(title, str) or not title.strip():
-            print("Error: Book title must be a non-empty string.")
-            return
-        if not isinstance(price, (int, float)) or price <= 0:
-            print("Error: Price must be a positive number.")
-            return
-        if not isinstance(quantity, int) or quantity < 0:
-            print("Error: Quantity must be a non-negative integer.")
-            return
         if isbn in self.books:
             print("Error: A book with this ISBN already exists.")
             return
-
+        
+        if not isinstance(price, (int, float)) or price < 0:
+            print("Error: Price must be a positive number.")
+            return
+        
+        if not isinstance(quantity, int) or quantity < 0:
+            print("Error: Quantity must be a non-negative integer.")
+            return
+        
         new_book = Book(title, author, isbn, genre, price, quantity)
         self.books[isbn] = new_book.to_dict()
         save_books(self.books)
         print("Book added successfully!")
+
 
 
     def view_books(self):

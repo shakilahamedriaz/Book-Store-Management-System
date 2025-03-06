@@ -22,5 +22,21 @@
         "genre": "test2",
         "price": -90.0,
         "quantity": -99
+    },
+    "990": {
+        "title": "Data",
+        "author": "sr",
+        "isbn": "990",
+        "genre": "dp",
+        "price": 50.0,
+        "quantity": 4
+    },
+    "899": {
+        "title": "Coreman",
+        "author": "author",
+        "isbn": "899",
+        "genre": "programming",
+        "price": 89.0,
+        "quantity": 3
     }
 }

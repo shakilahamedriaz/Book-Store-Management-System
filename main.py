@@ -20,8 +20,8 @@ def main():
             author = input("Enter Author name: ")
             isbn = input("Enter ISBN no: ")
             genre = input("Enter genre: ")
-            price = input("Enter price: ")
-            quantity = input("Enter quantity: ")
+            price = float(input("Enter price: "))
+            quantity = int(input("Enter quantity: "))
             #add this information to book_manager/add_books()
             manager.add_book(title, author, isbn, genre, price, quantity)
         
