@@ -1,42 +1,34 @@
 import json
 from book import Book
-
+from file_handler import load_books, save_books
 
 class BookManager:
     def __init__(self):
-        self.books = load.books()
-    
-    def add_books(self, title, author, isbn, genre, price, quantity):
-        if isbn in self.books:
-            print("Error: A book with this ISBN/BOOKID already exist.Please enter a new book data!")
-            return
+        self.books = load_books()
 
+    def add_book(self, title, author, isbn, genre, price, quantity):
+        if isbn in self.books:
+            print("Error: A book with this ISBN already exists.")
+            return
         new_book = Book(title, author, isbn, genre, price, quantity)
         self.books[isbn] = new_book.to_dict()
         save_books(self.books)
-        print("Book added successfully!\nThank you..")
-
+        print("Book added successfully!")
 
     def view_books(self):
         if not self.books:
-            print("No books available right now here!")
-
-            for book in self.books.values():
-                print(f"Book Name: {book['title']} Auther: {book['author']} - {book['genre']}, ${book['price']} (Stock: {book['quantity']})")
-        
-        else:
-            print("No books fund in the book list.")
-    
-
+            print("No books available.")
+            return
+        for book in self.books.values():
+            print(f"{book['title']} by {book['author']} - {book['genre']}, ${book['price']} (Stock: {book['quantity']})")
 
     def search_book(self, keyword):
         found = [book for book in self.books.values() if keyword.lower() in book['title'].lower()]
         if found:
-            print(f"Book Name: {book['title']} Auther: {book['author']} - {book['genre']}, ${book['price']} (Stock: {book['quantity']})")
+            for book in found:
+                print(f"{book['title']} by {book['author']} - {book['genre']}, ${book['price']} (Stock: {book['quantity']})")
         else:
-            print("No books found with this keyword")
-    
-
+            print("No books found.")
 
     def remove_book(self, isbn):
         if isbn in self.books:
@@ -44,5 +36,4 @@ class BookManager:
             save_books(self.books)
             print("Book removed successfully!")
         else:
-            print("No book found here with is ISBN/BOOKID.")
-        
+            print("Error: No book found with this ISBN.")
